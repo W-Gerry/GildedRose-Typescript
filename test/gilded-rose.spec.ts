@@ -121,36 +121,36 @@ describe("Gilded Rose", function () {
             new Item("Sulfuras, Hand of Ragnaros", -1, 80),
         ])
 
-    //     const goldenRecord = [
-    //         new Item("foo", -2, 0),
-    //         new Item("foo", -1, 0),
-    //         new Item("foo", 0, 0),
-    //         new Item("Aged Brie", -3, 22),
-    //         new Item("Aged Brie", 0, 21),
-    //         new Item("Aged Brie", -1, 22),
-    //         new Item("Backstage passes to a TAFKAL80ETC concert", 0, 13),
-    //         new Item("Backstage passes to a TAFKAL80ETC concert", -2, 0),
-    //         new Item("Sulfuras, Hand of Ragnaros", -1, 80),
-    //     ]
+        const goldenRecord = [
+            new Item("foo", -2, 0),
+            new Item("foo", -1, 0),
+            new Item("foo", 0, 0),
+            new Item("Aged Brie", -3, 22),
+            new Item("Aged Brie", 0, 21),
+            new Item("Aged Brie", -1, 22),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 0, 13),
+            new Item("Backstage passes to a TAFKAL80ETC concert", -2, 0),
+            new Item("Sulfuras, Hand of Ragnaros", -1, 80),
+        ]
         
-    //     const items = gildedRose.updateQuality();
-    //     expect(items).to.deep.equal(goldenRecord);
-    // })
+        const items = gildedRose.updateQuality();
+        expect(items).to.deep.equal(goldenRecord);
+    })
 
-    // it("'Aged Brie' should increase in value with age", function() {
-    //     const gildedRose = new GildedRose([
-    //         new Item("Aged Brie", -5, 23),
-    //         new Item("Aged Brie", 1, 20),
-    //         new Item("Aged Brie", 0, 20),
-    //     ])
+    it("'Aged Brie' should increase in value with age", function() {
+        const gildedRose = new GildedRose([
+            new Item("Aged Brie", -5, 23),
+            new Item("Aged Brie", 1, 20),
+            new Item("Aged Brie", 0, 20),
+        ])
 
-    //     const goldenRecord = [
-    //         new Item("Aged Brie", -6, 25),
-    //         new Item("Aged Brie", 0, 21),
-    //         new Item("Aged Brie", -1, 22),
-    //     ]
+        const goldenRecord = [
+            new Item("Aged Brie", -6, 25),
+            new Item("Aged Brie", 0, 21),
+            new Item("Aged Brie", -1, 22),
+        ]
         
-    //     const items = gildedRose.updateQuality();
-    //     expect(items).to.deep.equal(goldenRecord);
-    // })
+        const items = gildedRose.updateQuality();
+        expect(items).to.deep.equal(goldenRecord);
+    })
 });
