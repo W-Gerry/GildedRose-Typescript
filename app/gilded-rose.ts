@@ -64,9 +64,9 @@ export class GildedRose {
             }
         }
 
-        for (let i = 0; i < this.items.length; i++) {
-            console.log(`new Item("${this.items[i].name}", ${this.items[i].sellIn}, ${this.items[i].quality}),`);
-        }
+        // for (let i = 0; i < this.items.length; i++) {
+        //     console.log(`new Item("${this.items[i].name}", ${this.items[i].sellIn}, ${this.items[i].quality}),`);
+        // }
         return this.items;
     }
 }
