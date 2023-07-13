@@ -108,18 +108,18 @@ describe("Gilded Rose", function () {
         expect(items).to.deep.equal(goldenRecord);
     })
 
-    // it("should never have a negative quality value", function() {
-    //     const gildedRose = new GildedRose([
-    //         new Item("foo", -1, 0),
-    //         new Item("foo", 0, 0),
-    //         new Item("foo", 1, 1),
-    //         new Item("Aged Brie", -2, 20),
-    //         new Item("Aged Brie", 1, 20),
-    //         new Item("Aged Brie", 0, 20),
-    //         new Item("Backstage passes to a TAFKAL80ETC concert", 1, 10),
-    //         new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
-    //         new Item("Sulfuras, Hand of Ragnaros", -1, 80),
-    //     ])
+    it("should never have a negative quality value", function() {
+        const gildedRose = new GildedRose([
+            new Item("foo", -1, 0),
+            new Item("foo", 0, 0),
+            new Item("foo", 1, 1),
+            new Item("Aged Brie", -2, 20),
+            new Item("Aged Brie", 1, 20),
+            new Item("Aged Brie", 0, 20),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 1, 10),
+            new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
+            new Item("Sulfuras, Hand of Ragnaros", -1, 80),
+        ])
 
     //     const goldenRecord = [
     //         new Item("foo", -2, 0),
