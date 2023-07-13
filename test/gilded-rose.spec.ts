@@ -153,4 +153,49 @@ describe("Gilded Rose", function () {
         const items = gildedRose.updateQuality();
         expect(items).to.deep.equal(goldenRecord);
     })
+
+    it("cannot have quality greater than 50", function() {
+        const gildedRose = new GildedRose([
+            new Item("foo", 6, 49),
+            new Item("Aged Brie", -2, 49),
+            new Item("Aged Brie", 5, 50),
+            new Item("Aged Brie", 6, 49),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 12, 49),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 12, 50),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 9, 49),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 9, 48),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 4, 48),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 4, 47),
+        ])
+
+        const goldenRecord = [
+            new Item("foo", 5, 48),
+            new Item("Aged Brie", -3, 50),
+            new Item("Aged Brie", 4, 50),
+            new Item("Aged Brie", 5, 50),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 11, 50),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 11, 50),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 8, 50),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 8, 50),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 3, 50),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 3, 50),
+        ]
+        
+        const items = gildedRose.updateQuality();
+        expect(items).to.deep.equal(goldenRecord);
+    })
+
+    it("Sulfuras has no sell by date and does not lose quality", function() {
+        const gildedRose = new GildedRose([
+            new Item("Sulfuras, Hand of Ragnaros", 10, 80),
+        ])
+
+        const goldenRecord = [
+            new Item("Sulfuras, Hand of Ragnaros", 10, 80),
+        ]
+        
+        const items = gildedRose.updateQuality();
+        expect(items).to.deep.equal(goldenRecord);
+    })
+
 });
