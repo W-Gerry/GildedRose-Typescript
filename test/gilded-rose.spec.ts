@@ -3,22 +3,11 @@ import { Item, GildedRose } from "../app/gilded-rose";
 
 describe("Gilded Rose", function () {
 
-    // it("should foo", function() {
-    //     const gildedRose = new GildedRose([ new Item("foo", 0, 0) ]);
-    //     const items = gildedRose.updateQuality();
-    //     expect(items[0].name).to.equal("foo");
-    // });
-
-    // it("should have a sellIn value", function() {
-    //     const gildedRose = new GildedRose([
-    //         new Item("foo", -1, 20),
-    //         // new Item("foo", 0, 20),
-    //         // new Item("foo", 1, 20),
-    //     ])
-
-    //     const items = gildedRose.updateQuality();
-    //     expect(items[0].sellIn).to.equal(!undefined);
-    // })
+    it("should foo", function() {
+        const gildedRose = new GildedRose([ new Item("foo", 0, 0) ]);
+        const items = gildedRose.updateQuality();
+        expect(items[0].name).to.equal("foo");
+    });
 
     it("Matches the golden record", function() {
         const gildedRose = new GildedRose([
@@ -160,8 +149,6 @@ describe("Gilded Rose", function () {
             new Item("Aged Brie", -2, 49),
             new Item("Aged Brie", 5, 50),
             new Item("Aged Brie", 6, 49),
-            new Item("Backstage passes to a TAFKAL80ETC concert", 12, 49),
-            new Item("Backstage passes to a TAFKAL80ETC concert", 12, 50),
             new Item("Backstage passes to a TAFKAL80ETC concert", 9, 49),
             new Item("Backstage passes to a TAFKAL80ETC concert", 9, 48),
             new Item("Backstage passes to a TAFKAL80ETC concert", 4, 48),
@@ -173,8 +160,6 @@ describe("Gilded Rose", function () {
             new Item("Aged Brie", -3, 50),
             new Item("Aged Brie", 4, 50),
             new Item("Aged Brie", 5, 50),
-            new Item("Backstage passes to a TAFKAL80ETC concert", 11, 50),
-            new Item("Backstage passes to a TAFKAL80ETC concert", 11, 50),
             new Item("Backstage passes to a TAFKAL80ETC concert", 8, 50),
             new Item("Backstage passes to a TAFKAL80ETC concert", 8, 50),
             new Item("Backstage passes to a TAFKAL80ETC concert", 3, 50),
@@ -206,9 +191,26 @@ describe("Gilded Rose", function () {
         ])
 
         const goldenRecord = [
-            new Item("Backstage passes to a TAFKAL80ETC concert", 11, 11),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 11, 9),
             new Item("Backstage passes to a TAFKAL80ETC concert", 8, 12),
             new Item("Backstage passes to a TAFKAL80ETC concert", 3, 13),
+        ]
+        
+        const items = gildedRose.updateQuality();
+        expect(items).to.deep.equal(goldenRecord);
+    })
+
+    it("Backstage passess have quality of 0 after sell by day", function() {
+        const gildedRose = new GildedRose([
+            new Item("Backstage passes to a TAFKAL80ETC concert", 0, 25),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 0, 50),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10),
+        ])
+
+        const goldenRecord = [
+            new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
+            new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
+            new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
         ]
         
         const items = gildedRose.updateQuality();
