@@ -25,63 +25,77 @@ export class GildedRose {
                 continue;
             }
 
-            // Define function for changing quality value of items and set default degradation
-            let newQuality = function changeQuality(degradationValue) {
-                return item.quality += degradationValue;
-            }
-            let degradationValue = 0;
-
             // Reduce sellIn variable by 1 for all other items
             item.sellIn--;
+
+            // Set default degradation value
+            let qualityChange = 0;
+
+            // Set min and max quality
+            let minQuality = 0;
+            let maxQuality = 50;
 
             // Switch case to adjust value of all other items
             switch(item.name) {
                 case "Aged Brie":
-                    if (item.sellIn >= 0) {
-                        item.quality += 1;
-                    } else {
-                        item.quality += 2;
-                    }
+                    qualityChange = 1;
                     break;
 
                 case "Backstage passes to a TAFKAL80ETC concert":
                     if (item.sellIn >= 10) {
-                        item.quality -= 1;
+                        qualityChange = -1;
                         break;
                     }
                     
                     if (item.sellIn >= 5) {
-                        item.quality += 2;
+                        qualityChange = 2;
                         break;
                     }
 
                     if (item.sellIn >= 0) {
-                        item.quality += 3;
+                        qualityChange = 3;
                     } else {
                         item.quality = 0;
+                        qualityChange = 0;
                     }
                     break;
 
+                case "Conjured Mana Cake":
+                    qualityChange = -2;
+                    break;
+
                 default:
-                    if (item.sellIn >= 0) {
-                        item.quality -= 1;
-                    } else {
-                        item.quality -= 2;
-                    }
-            }     
-
-            if (item.quality > 50) {
-                item.quality = 50;
+                    qualityChange = -1;
             }
+            
+            // Adjust quality values
+            item.quality = adjustQuality(item, qualityChange);
 
-            if (item.quality < 0) {
-                item.quality = 0;
-            }
+            // Check min and max allowed quality values
+            item.quality = checkMinMaxQuality(item, minQuality, maxQuality);
 
         }
-        
+
         return this.items;
     }
 
 }
 
+function adjustQuality(item, qualityChange) {
+    if (item.sellIn < 0) {
+        // Items degrade 2x faster after sell date
+        qualityChange *= 2;
+    }
+    return item.quality += qualityChange;
+}
+
+function checkMinMaxQuality(item, minQuality, maxQuality) {
+    if (item.quality < minQuality) {
+        item.quality = minQuality;
+    }
+
+    if (item.quality > maxQuality) {
+        item.quality = maxQuality;
+    }
+    return item.quality;
+}

@@ -217,4 +217,19 @@ describe("Gilded Rose", function () {
         expect(items).to.deep.equal(goldenRecord);
     })
 
+    it("Conjured mana cakes degrade twice as fast as other items", function() {
+        const gildedRose = new GildedRose([
+            new Item("Conjured Mana Cake", 1, 10),
+            new Item("Conjured Mana Cake", 0, 10),
+        ])
+
+        const goldenRecord = [
+            new Item("Conjured Mana Cake", 0, 8),
+            new Item("Conjured Mana Cake", -1, 6),
+        ]
+        
+        const items = gildedRose.updateQuality();
+        expect(items).to.deep.equal(goldenRecord);
+    })
+
 });
